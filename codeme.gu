@@ -1,0 +1,127 @@
+  
+### n: change this parameter to equal the number of data sets to be plotted
+n = 5
+# t: top margin in pixels
+t = 70.0
+# b: key height in pixels (bottom margin)
+b = 200.0
+# h: height of output in pixels
+h = 150.0*n + t + b
+
+
+
+
+
+
+set term pngcairo enhanced color lw 2.5 size 800,h font "Arial Black"
+set output '2020March31.png'
+set multiplot layout (n+1),1
+set boxwidth 1.3
+set lmargin 10
+set rmargin 2 
+set mxtics 4
+set xtics font "Arial Black, 18" 
+set ytics font "Arial Black, 18" 
+
+
+
+
+set title "31 March 2020" font "Arial Black, 18" 
+unset arrow from 109,0 to 115,0 nohead lw 1
+unset xlabel
+set format x ""
+set xrange [0:24]
+set xtics (0, 6, 12, 18, 24)
+set yrange [0:8]
+set ytics (0,4,8)
+set ylabel "Psw" font "Arial Black, 18" 
+plot "newdata.txt" using (($2*24*60+$3*60+$4)/(60)-2184):($10) notitle w l lt -1
+
+
+
+
+unset arrow from 109,0 to 115,0 nohead lw -3
+unset title
+unset xlabel
+set format x ""
+set xrange [0:24]
+set xtics (0, 6, 12, 18, 24)
+set yrange [300:700]
+set ytics (300,500,700)
+set ylabel "Vsw" font "Arial Black, 18" 
+plot "newdata.txt" using (($2*24*60+$3*60+$4)/(60)-2184):($8) notitle w l lt -1
+
+
+
+
+
+
+
+
+unset arrow from 109,0 to 115,0 nohead lw 1
+set format x ""
+set xrange [0:24]
+set xtics (0, 6, 12, 18, 24)
+set yrange [-20:20]
+set ytics (-20,0,20)
+set ylabel "Bz" font "Arial Black, 18" 
+plot "newdata.txt" using (($2*24*60+$3*60+$4)/(60)-2184):($7)notitle w l lt -1
+
+
+
+
+unset arrow from 109,0 to 115,0 nohead lw 1
+unset title
+unset xlabel
+set format x ""
+set xrange [0:24]
+set xtics (0, 6, 12, 18, 24)
+set yrange [0:10]
+set ytics (0,5,10)
+set ylabel "Nsw" font "Arial Black, 18" 
+plot "newdata.txt" using (($2*24*60+$3*60+$4)/(60)-2184):($9) notitle w l lt -1
+
+
+
+
+
+
+
+
+unset arrow from 109,0 to 115,0 nohead lw 1
+set format x ""
+set xrange [0:24]
+set xtics (0, 6, 12, 18, 24)
+set yrange [-60:0]
+set ytics (-60,-40,-20,0)
+set ylabel "SYM-H" font "Arial Black, 18" 
+unset key
+plot "newdata.txt" using (($2*24*60+$3*60+$4)/(60)-2184):($12) notitle w l lt -1
+unset xrange
+
+
+
+
+
+           
+                
+         
+unset arrow from 173,1000 to 174,1000 nohead lw 1
+set ytics nomirror
+set format x "%g"
+set xrange [0:24]
+set xtics (0, 6, 12, 18, 24)
+set ylabel "AE" font "Arial Black, 18" 
+set xlabel "Hours" font "Arial Black, 18" 
+set yrange [0:2700]
+set ytics (0,900,1800,2700)
+
+unset key 
+plot "newdata.txt" using (($2*24*60+$3*60+$4)/(60)-2184):($11) notitle w l lt -1
+unset title 
+
+
+
+
+unset multiplot
+
